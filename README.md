@@ -41,9 +41,12 @@ npm run dev                       # http://localhost:3000
 ## Project layout
 
 ```
-app/                 Next.js routes (calendar, requests, my-bookings)
+app/                 Next.js routes (calendar, book, requests, my-bookings, login)
+app/auth/callback/   Magic-link landing route (exchanges code for a session)
 lib/reservations.ts  Core booking decision logic (state machine)
+lib/actions.ts        Server Actions: create/approve/deny/cancel reservation, sign out
 lib/supabase/        Browser + server Supabase clients
+middleware.ts        Refreshes the Supabase session cookie on each request
 supabase/schema.sql  Tables, overlap constraint, RLS policies
 supabase/seed.sql    Example rooms/owners
 ```

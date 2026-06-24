@@ -3,8 +3,9 @@ import { cookies } from "next/headers";
 
 // Server-side Supabase client. Reads the user's session from cookies so
 // row-level security applies on behalf of the signed-in user.
-export function createClient() {
-  const cookieStore = cookies();
+// Next 15+ made cookies() async, so this must be awaited by every caller.
+export async function createClient() {
+  const cookieStore = await cookies();
 
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
